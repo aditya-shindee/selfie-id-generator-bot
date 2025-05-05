@@ -1,13 +1,22 @@
 
-import React, { ChangeEvent, useRef } from "react";
-import { Button } from "@/components/ui/button";
+import React, { ChangeEvent, useRef, forwardRef, useImperativeHandle } from "react";
+
+export interface PhotoUploadRef {
+  triggerFileInput: () => void;
+}
 
 interface PhotoUploadProps {
   onPhotoSelected: (photo: string) => void;
 }
 
-const PhotoUpload: React.FC<PhotoUploadProps> = ({ onPhotoSelected }) => {
+const PhotoUpload = forwardRef<PhotoUploadRef, PhotoUploadProps>(({ onPhotoSelected }, ref) => {
   const fileInputRef = useRef<HTMLInputElement>(null);
+
+  useImperativeHandle(ref, () => ({
+    triggerFileInput: () => {
+      fileInputRef.current?.click();
+    }
+  }));
 
   const handleFileChange = (e: ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
@@ -45,6 +54,8 @@ const PhotoUpload: React.FC<PhotoUploadProps> = ({ onPhotoSelected }) => {
       />
     </div>
   );
-};
+});
+
+PhotoUpload.displayName = "PhotoUpload";
 
 export default PhotoUpload;

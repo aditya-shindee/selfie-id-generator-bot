@@ -1,11 +1,11 @@
 
 import React, { useState, useEffect, useRef } from "react";
-import { Card, CardContent, CardHeader, CardTitle, CardFooter } from "@/components/ui/card";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { useToast } from "@/components/ui/use-toast";
-import { Button } from "@/components/ui/button"; // Added Button import
+import { Button } from "@/components/ui/button";
 import ChatMessage from "./chat/ChatMessage";
 import ChatInput from "./chat/ChatInput";
-import PhotoUpload from "./chat/PhotoUpload";
+import PhotoUpload, { PhotoUploadRef } from "./chat/PhotoUpload";
 import IDCard from "./id-card/IDCard";
 import { Message, UserInfo, ChatStage } from "@/types/chat";
 import { generateId, getNextQuestion, processUserResponse } from "@/utils/chatUtils";
@@ -25,7 +25,7 @@ const Chatbot: React.FC = () => {
   const [apiKey, setApiKey] = useState("");
   
   const messagesEndRef = useRef<HTMLDivElement>(null);
-  const photoInputRef = useRef<HTMLInputElement>(null);
+  const photoUploadRef = useRef<PhotoUploadRef>(null);
   const { toast } = useToast();
 
   // Initialize chatbot with first message
@@ -139,9 +139,9 @@ const Chatbot: React.FC = () => {
   };
 
   const handlePhotoUpload = () => {
-    // Trigger file input click
-    if (photoInputRef.current) {
-      photoInputRef.current.click();
+    // Trigger file input click using the ref
+    if (photoUploadRef.current) {
+      photoUploadRef.current.triggerFileInput();
     }
   };
 
@@ -256,6 +256,7 @@ const Chatbot: React.FC = () => {
               </div>
 
               <PhotoUpload
+                ref={photoUploadRef}
                 onPhotoSelected={handlePhotoSelected}
               />
               
