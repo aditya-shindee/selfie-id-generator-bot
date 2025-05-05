@@ -1,3 +1,4 @@
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -13,10 +14,10 @@
     --popover: 0 0% 100%;
     --popover-foreground: 222.2 84% 4.9%;
 
-    --primary: 222.2 47.4% 11.2%;
+    --primary: 255 70% 75%;
     --primary-foreground: 210 40% 98%;
 
-    --secondary: 210 40% 96.1%;
+    --secondary: 258 40% 54%;
     --secondary-foreground: 222.2 47.4% 11.2%;
 
     --muted: 210 40% 96.1%;
@@ -35,19 +36,12 @@
     --radius: 0.5rem;
 
     --sidebar-background: 0 0% 98%;
-
     --sidebar-foreground: 240 5.3% 26.1%;
-
     --sidebar-primary: 240 5.9% 10%;
-
     --sidebar-primary-foreground: 0 0% 98%;
-
     --sidebar-accent: 240 4.8% 95.9%;
-
     --sidebar-accent-foreground: 240 5.9% 10%;
-
     --sidebar-border: 220 13% 91%;
-
     --sidebar-ring: 217.2 91.2% 59.8%;
   }
 
@@ -98,4 +92,24 @@
   body {
     @apply bg-background text-foreground;
   }
+}
+
+.chat-gradient {
+  background: linear-gradient(135deg, #9b87f5 0%, #7E69AB 100%);
+}
+
+.id-card-gradient {
+  background: linear-gradient(135deg, #F2FCE2 0%, #E5DEFF 100%);
+}
+
+.message-bubble {
+  @apply rounded-2xl p-4 max-w-[80%] shadow-sm animate-slide-in;
+}
+
+.bot-message {
+  @apply bg-chatbot-light text-gray-800 rounded-tr-none;
+}
+
+.user-message {
+  @apply chat-gradient text-white rounded-tl-none ml-auto;
 }
