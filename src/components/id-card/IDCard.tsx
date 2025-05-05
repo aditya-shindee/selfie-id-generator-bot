@@ -29,10 +29,10 @@ const IDCard: React.FC<IDCardProps> = ({ userInfo }) => {
   };
 
   return (
-    <div className="flex flex-col items-center gap-4">
+    <div className="flex flex-col items-center gap-6 w-full max-w-md mx-auto">
       <div 
         ref={cardRef} 
-        className="w-full max-w-xs overflow-hidden rounded-xl shadow-lg border border-gray-200"
+        className="w-full overflow-hidden rounded-xl shadow-lg border border-gray-200"
       >
         <div className="bg-chatbot-primary text-white p-4 flex items-center justify-between">
           <div className="flex items-center gap-2">
@@ -44,35 +44,35 @@ const IDCard: React.FC<IDCardProps> = ({ userInfo }) => {
           </div>
         </div>
         
-        <div className="id-card-gradient p-4">
-          <div className="flex flex-col items-center mb-4">
+        <div className="id-card-gradient p-6">
+          <div className="flex flex-col items-center mb-6">
             {userInfo.photo ? (
               <img 
                 src={userInfo.photo} 
                 alt="User" 
-                className="w-32 h-32 object-cover rounded-full border-4 border-white shadow-md mb-2" 
+                className="w-40 h-40 object-cover rounded-full border-4 border-white shadow-md mb-4" 
               />
             ) : (
-              <div className="w-32 h-32 rounded-full bg-gray-200 flex items-center justify-center border-4 border-white shadow-md mb-2">
+              <div className="w-40 h-40 rounded-full bg-gray-200 flex items-center justify-center border-4 border-white shadow-md mb-4">
                 <span className="text-gray-500">No Photo</span>
               </div>
             )}
           </div>
           
-          <div className="space-y-3">
+          <div className="space-y-4">
             <div>
               <p className="text-xs text-gray-500 uppercase">Name</p>
-              <p className="font-semibold">{userInfo.name}</p>
+              <p className="font-semibold text-lg">{userInfo.name}</p>
             </div>
             
             <div>
               <p className="text-xs text-gray-500 uppercase">Email</p>
-              <p className="text-sm">{userInfo.email}</p>
+              <p className="text-base">{userInfo.email}</p>
             </div>
             
             <div>
               <p className="text-xs text-gray-500 uppercase">Age</p>
-              <p>{userInfo.age} years</p>
+              <p className="text-base">{userInfo.age} years</p>
             </div>
           </div>
         </div>
@@ -84,7 +84,7 @@ const IDCard: React.FC<IDCardProps> = ({ userInfo }) => {
       
       <Button 
         onClick={handleDownload} 
-        className="flex items-center gap-2 chat-gradient text-white"
+        className="flex items-center gap-2 chat-gradient text-white px-6"
       >
         <Download className="h-4 w-4" />
         <span>Download ID Card</span>

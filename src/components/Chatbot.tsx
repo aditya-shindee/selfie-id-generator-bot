@@ -243,38 +243,38 @@ const Chatbot: React.FC = () => {
           )}
 
           <div className="flex flex-col md:flex-row gap-6">
-            <div className="flex-1">
-              <div className="bg-gray-50 rounded-lg p-3 h-[400px] overflow-y-auto mb-3">
-                {messages.map((message) => (
-                  <ChatMessage
-                    key={message.id}
-                    message={message}
-                    onPhotoUpload={handlePhotoUpload}
-                  />
-                ))}
-                <div ref={messagesEndRef} />
+            {stage !== ChatStage.COMPLETE ? (
+              <div className="flex-1">
+                <div className="bg-gray-50 rounded-lg p-3 h-[400px] overflow-y-auto mb-3">
+                  {messages.map((message) => (
+                    <ChatMessage
+                      key={message.id}
+                      message={message}
+                      onPhotoUpload={handlePhotoUpload}
+                    />
+                  ))}
+                  <div ref={messagesEndRef} />
+                </div>
+
+                <PhotoUpload
+                  ref={photoUploadRef}
+                  onPhotoSelected={handlePhotoSelected}
+                />
+                
+                <ChatInput
+                  onSendMessage={handleSendMessage}
+                  disabled={isProcessing || stage === ChatStage.PHOTO || stage === ChatStage.COMPLETE}
+                  placeholder={
+                    stage === ChatStage.PHOTO
+                      ? "Please upload a photo..."
+                      : stage === ChatStage.COMPLETE
+                      ? "Chat completed"
+                      : "Type your response..."
+                  }
+                />
               </div>
-
-              <PhotoUpload
-                ref={photoUploadRef}
-                onPhotoSelected={handlePhotoSelected}
-              />
-              
-              <ChatInput
-                onSendMessage={handleSendMessage}
-                disabled={isProcessing || stage === ChatStage.PHOTO || stage === ChatStage.COMPLETE}
-                placeholder={
-                  stage === ChatStage.PHOTO
-                    ? "Please upload a photo..."
-                    : stage === ChatStage.COMPLETE
-                    ? "Chat completed"
-                    : "Type your response..."
-                }
-              />
-            </div>
-
-            {stage === ChatStage.COMPLETE && (
-              <div className="flex-1 flex items-center justify-center">
+            ) : (
+              <div className="flex-1 flex items-center justify-center w-full">
                 <IDCard userInfo={userInfo} />
               </div>
             )}
