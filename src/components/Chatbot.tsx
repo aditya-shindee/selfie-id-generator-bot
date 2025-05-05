@@ -2,6 +2,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import { Card, CardContent, CardHeader, CardTitle, CardFooter } from "@/components/ui/card";
 import { useToast } from "@/components/ui/use-toast";
+import { Button } from "@/components/ui/button"; // Added Button import
 import ChatMessage from "./chat/ChatMessage";
 import ChatInput from "./chat/ChatInput";
 import PhotoUpload from "./chat/PhotoUpload";
